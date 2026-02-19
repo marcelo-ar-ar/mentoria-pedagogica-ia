@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+  AI-Pedagogy Co-Pilot v1.1 (W3C Validated)
+  License: MIT (./LICENSE)
+  Copyright (c) 2026 Marcelo Andrés Reynoso [marcelo-ar-ar]
+  Alineado con el Marco de Competencias Docentes en IA de la UNESCO.
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Pedagogy Co-Pilot | UNESCO Expert Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
+    <style>
+        :root { --unesco-blue: #0077d4; }
+        .step-content { display: none; }
+        .active-step { display: block; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        @media print {
+            .no-print, nav, button, .step-content, header, footer { display: none !important; }
+            .print-only { display: block !important; }
+            body { background: white !important; padding: 0; margin: 0; }
+            .plan-page { width: 100%; padding: 30px; font-family: 'Arial', sans-serif; color: black; line-height: 1.4; }
+            .section-title { 
+                background: #f0f7ff !important; 
+                border-left: 5px solid #0077d4; 
+                padding: 10px; 
+                font-weight: bold; 
+                margin-top: 20px;
+                text-transform: uppercase;
+                font-size: 11pt;
+            }
+            .content-box { border: 1px solid #ddd; padding: 12px; margin-bottom: 12px; font-size: 10pt; background: #fff; }
+            .header-table { width: 100%; border-bottom: 3px solid #0077d4; margin-bottom: 25px; padding-bottom: 10px; }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen font-sans">
+
+    <header class="bg-[#0077d4] text-white p-6 shadow-xl no-print text-center">
+        <span class="text-2xl font-black tracking-tighter block">AI-PEDAGOGY CO-PILOT</span>
+        <span class="text-[10px] opacity-90 uppercase tracking-[0.3em] mt-1 font-bold block">Marco de Competencias Docentes UNESCO</span>
+    </header>
+
+    <nav class="max-w-5xl mx-auto mt-8 px-4 no-print">
+        <div class="flex justify-between text-[10px] md:text-xs font-black uppercase text-slate-400 border-b-2 border-slate-200">
+            <button id="btn-0" class="pb-3 border-b-4 border-blue-600 text-blue-600 font-black uppercase" onclick="goToStep(0)">1. Contexto</button>
+            <button id="btn-1" class="pb-3 font-black uppercase" onclick="goToStep(1)">2. Herramienta</button>
+            <button id="btn-2" class="pb-3 font-black uppercase" onclick="goToStep(2)">3. Ética</button>
+            <button id="btn-3" class="pb-3 font-black uppercase" onclick="goToStep(3)">4. Diseño</button>
+            <button id="btn-4" class="pb-3 font-black uppercase" onclick="goToStep(4)">5. Impacto</button>
+            <button id="btn-history" class="pb-3 text-emerald-600 font-black uppercase hover:text-emerald-800" onclick="goToStep('history')"><i class="fas fa-history mr-1"></i>Bitácora</button>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto p-4 md:p-10">
+
+        <!-- PASO 0: NIVEL -->
+        <section id="step0" class="step-content active-step bg-white p-10 rounded-3xl shadow-xl border border-slate-200">
+            <div class="text-center mb-10">
+                <span class="text-3xl font-black text-slate-800 mb-2 italic block">Bienvenido, Docente Innovador</span>
+                <span class="text-slate-500 block">Selecciona tu nivel educativo para personalizar la experiencia:</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <button onclick="setLevel('primaria')" class="p-8 border-2 border-slate-100 rounded-2xl hover:border-orange-400 hover:bg-orange-50 transition-all group shadow-sm text-center">
+                    <i class="fas fa-child text-4xl mb-4 text-orange-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-black text-lg block text-slate-700 uppercase tracking-tighter">Primaria</span>
+                    <span class="text-[11px] text-slate-400 mt-2 leading-tight block font-bold">Alfabetización y seguridad inicial.</span>
+                </button>
+                <button onclick="setLevel('secundaria')" class="p-8 border-2 border-slate-100 rounded-2xl hover:border-blue-500 hover:bg-blue-50 transition-all group shadow-sm text-center">
+                    <i class="fas fa-user-graduate text-4xl mb-4 text-blue-500 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-black text-lg block text-slate-700 uppercase tracking-tighter">Secundaria</span>
+                    <span class="text-[11px] text-slate-400 mt-2 leading-tight block font-bold">Pensamiento crítico y sesgos.</span>
+                </button>
+                <button onclick="setLevel('universidad')" class="p-8 border-2 border-slate-100 rounded-2xl hover:border-purple-600 hover:bg-purple-50 transition-all group shadow-sm text-center">
+                    <i class="fas fa-university text-4xl mb-4 text-purple-600 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-black text-lg block text-slate-700 uppercase tracking-tighter">Universidad</span>
+                    <span class="text-[11px] text-slate-400 mt-2 leading-tight block font-bold">Investigación y ética técnica.</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- PASO 1: HERRAMIENTAS -->
+        <section id="step1" class="step-content bg-white p-10 rounded-3xl shadow-xl border border-slate-200">
+            <span class="text-2xl font-black mb-6 text-blue-800 block"><i class="fas fa-tools mr-3"></i>¿Qué sistema de IA integraremos?</span>
+            <div id="tools-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            <div class="mt-8 bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                <label for="tool-name" class="block text-xs font-black text-slate-500 uppercase mb-2">Especificar uso pedagógico:</label>
+                <input id="tool-name" type="text" class="w-full p-4 bg-white rounded-xl border-2 border-slate-100 focus:border-blue-500 outline-none transition-all text-sm font-bold" placeholder="Ej: ChatGPT para guiar borradores de ensayo socráticos">
+            </div>
+            <div class="mt-10 flex justify-end">
+                <button onclick="goToStep(2)" class="bg-blue-600 text-white px-10 py-4 rounded-2xl font-black shadow-lg hover:bg-blue-700 transition-all">SIGUIENTE PASO <i class="fas fa-chevron-right ml-2"></i></button>
+            </div>
+        </section>
+
+        <!-- PASO 2: RIESGOS -->
+        <section id="step2" class="step-content bg-white p-10 rounded-3xl shadow-xl border border-slate-200">
+            <span class="text-2xl font-black mb-8 text-red-600 text-center block"><i class="fas fa-shield-alt mr-3"></i>Semáforo de Riesgo Ético</span>
+            <div class="space-y-4 max-w-xl mx-auto">
+                <div class="flex items-center gap-5 p-5 border-2 rounded-2xl bg-red-50 border-red-100 transition-all hover:bg-red-100">
+                    <input type="checkbox" id="q1" class="w-6 h-6 accent-red-600">
+                    <label for="q1" class="text-sm font-bold text-red-800 leading-tight">¿La IA reemplazará mi calificación final sin revisión humana directa? (Alto Riesgo)</label>
+                </div>
+                <div class="flex items-center gap-5 p-5 border-2 rounded-2xl bg-orange-50 border-orange-100 transition-all hover:bg-orange-100">
+                    <input type="checkbox" id="q2" class="w-6 h-6 accent-orange-600">
+                    <label for="q2" id="q2-label" class="text-sm font-bold text-orange-800 leading-tight">¿Se subirán datos personales o biométricos de los estudiantes?</label>
+                </div>
+                <div class="flex items-center gap-5 p-5 border-2 rounded-2xl bg-green-50 border-green-100">
+                    <input type="checkbox" id="q3" class="w-6 h-6 accent-green-600" checked disabled>
+                    <label for="q3" class="text-sm font-bold text-green-800">Compromiso: Supervisaré la interacción en tiempo real.</label>
+                </div>
+            </div>
+            <div class="mt-12 flex justify-between items-center px-10">
+                <button onclick="goToStep(1)" class="text-slate-400 font-black hover:text-slate-600 underline uppercase">ATRÁS</button>
+                <button onclick="goToStep(3)" class="bg-red-600 text-white px-10 py-4 rounded-2xl font-black shadow-lg">CONFIRMAR SEGURIDAD</button>
+            </div>
+        </section>
+
+        <!-- PASO 3: DISEÑO -->
+        <section id="step3" class="step-content bg-white p-10 rounded-3xl shadow-xl border border-slate-200">
+            <span class="text-2xl font-black mb-2 text-blue-800 block">4. Diseño del Prompt y Evaluación</span>
+            <span class="text-[10px] text-slate-400 mb-8 italic uppercase tracking-widest font-black block">Transferencia del Diseño Instruccional al Pedagógico</span>
+            
+            <div class="bg-blue-50 p-8 rounded-3xl border-2 border-blue-100 mb-8 shadow-inner">
+                <label for="subject-topic" class="block font-black text-[10px] mb-4 text-blue-700 uppercase tracking-widest italic">A. Motor de Prompt Socrático:</label>
+                <div class="flex flex-col md:flex-row gap-3 mb-6">
+                    <input id="subject-topic" type="text" class="flex-1 p-4 rounded-xl border-2 border-blue-200 text-sm font-bold shadow-sm" placeholder="Ingresa el tema (ej: Cambio Climático)">
+                    <button onclick="generateEthicalPrompt()" class="bg-blue-600 text-white px-6 py-4 rounded-xl font-black text-xs hover:bg-blue-800 transition-all shadow-md">GENERAR PROMPT</button>
+                </div>
+                <textarea id="generated-prompt" class="w-full p-5 bg-white border-2 border-blue-200 rounded-xl text-xs font-mono h-32 mb-3 shadow-inner" aria-label="Prompt Generado"></textarea>
+                <button onclick="copyPrompt()" class="text-xs text-blue-700 font-black flex items-center hover:text-blue-900 transition-all"><i class="fas fa-copy mr-2"></i> COPIAR PROMPT ÉTICO</button>
+            </div>
+
+            <div class="bg-purple-50 p-8 rounded-3xl border-2 border-purple-100 shadow-inner">
+                <span class="block font-black text-[10px] mb-4 text-purple-700 uppercase tracking-widest italic">B. Control de Comprensión Humana:</span>
+                <button onclick="generateEvalQuestions()" class="w-full bg-purple-600 text-white py-4 rounded-xl font-black text-xs mb-5 shadow-md hover:bg-purple-800">GENERAR PREGUNTAS POST-IA</button>
+                <div id="eval-questions-display" class="space-y-3"></div>
+            </div>
+
+            <div class="mt-12 flex justify-between items-center px-10">
+                <button onclick="goToStep(2)" class="text-slate-400 font-black hover:text-slate-600 underline uppercase">ATRÁS</button>
+                <button onclick="goToStep(4)" class="bg-blue-600 text-white px-10 py-4 rounded-2xl font-black shadow-lg">FINALIZAR DISEÑO</button>
+            </div>
+        </section>
+
+        <!-- PASO 4: IMPACTO -->
+        <section id="step4" class="step-content bg-white p-10 rounded-3xl shadow-xl border border-slate-200">
+            <span class="text-2xl font-black mb-2 text-emerald-800 text-center uppercase tracking-tighter italic block">Registro de Impacto Pedagógico</span>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+                <div class="space-y-6">
+                    <div>
+                        <label for="impact-engagement" class="block text-[10px] font-black text-slate-400 mb-2 uppercase italic tracking-widest">Compromiso Estudiantil:</label>
+                        <select id="impact-engagement" class="w-full p-4 border-2 border-slate-100 rounded-xl bg-slate-50 font-bold text-sm">
+                            <option>Alta: Participación crítica aumentada</option>
+                            <option>Media: Cumplimiento funcional</option>
+                            <option>Baja: Dependencia algorítmica pasiva</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="impact-obs" class="block text-[10px] font-black text-slate-400 mb-2 uppercase italic tracking-widest">Reflexión Docente Final:</label>
+                        <textarea id="impact-obs" class="w-full p-4 border-2 border-slate-100 rounded-xl h-32 bg-slate-50 text-sm font-medium" placeholder="¿Cómo reaccionó la clase ante la IA?"></textarea>
+                    </div>
+                    <button onclick="saveToHistory()" class="w-full bg-emerald-600 text-white py-4 rounded-2xl font-black shadow-xl hover:bg-emerald-800 transition-all uppercase tracking-widest">Guardar en Bitácora</button>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-2xl border-2 border-dashed border-slate-300">
+                    <span class="text-xs font-black text-slate-800 mb-4 flex items-center italic uppercase block"><i class="fas fa-award mr-2 text-yellow-500"></i> Rúbrica UNESCO v2024</span>
+                    <div class="space-y-4">
+                        <span class="text-[9px] border-b pb-2 block"><span class="font-bold text-blue-700 uppercase">Innovador:</span> El alumno valida y cuestiona a la IA.</span>
+                        <span class="text-[9px] border-b pb-2 block"><span class="font-bold text-emerald-600 uppercase">Ética:</span> El docente garantiza anonimato de datos.</span>
+                        <span class="text-[9px] block"><span class="font-bold text-purple-600 uppercase">Metacognición:</span> Se evalúa el proceso de pensamiento.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 pt-10 border-t-2 border-slate-100 text-center">
+                <button onclick="prepareUNESCOPlan()" class="bg-slate-900 text-white px-12 py-5 rounded-[2rem] font-black shadow-2xl hover:bg-black transition-all hover:scale-105 border-4 border-slate-800 uppercase">
+                    <i class="fas fa-file-pdf mr-3"></i> Generar Plan UNESCO
+                </button>
+            </div>
+        </section>
+
+        <!-- BITÁCORA -->
+        <section id="step-history" class="step-content bg-white p-10 rounded-3xl shadow-xl border border-slate-200">
+            <div class="flex justify-between items-center mb-10">
+                <span class="text-2xl font-black text-blue-800 tracking-tighter italic uppercase block">Bitácora de Innovación</span>
+                <div class="flex gap-4">
+                    <button onclick="exportToCSV()" class="bg-emerald-100 text-emerald-700 px-5 py-2 rounded-xl text-xs font-black hover:bg-emerald-200 transition-all">EXPORTAR CSV</button>
+                    <button onclick="clearHistory()" class="text-[10px] text-red-400 font-bold hover:text-red-700 underline uppercase">Limpiar Todo</button>
+                </div>
+            </div>
+            <div id="history-list" class="space-y-8 text-left"></div>
+        </section>
+
+    </main>
+
+    <footer class="mt-12 pb-10 text-center no-print">
+        <span class="text-[10px] text-slate-400 uppercase tracking-widest font-black block">
+            Distribuido bajo <a href="./LICENSE" class="underline">Licencia MIT</a> | © 2026 Marcelo Andrés Reynoso
+        </span>
+    </footer>
+
+    <div id="unesco-plan-template" class="print-only hidden"></div>
+
+    <script>
+        let currentLevel = 'secundaria';
+        const toolData = {
+            primaria: [{name: "IA Narrativa", desc: "Cuentos socráticos interactivos.", icon: "fa-book-open"}, {name: "IA de Fonética", desc: "Apoyo en lectoescritura adaptativa.", icon: "fa-spell-check"}],
+            secundaria: [{name: "Simulador de Debate", desc: "Análisis de sesgos y posturas.", icon: "fa-balance-scale"}, {name: "IA de Diagramas", desc: "Mapas conceptuales con validación.", icon: "fa-brain"}],
+            universidad: [{name: "Analizador Académico", desc: "Integridad y datos científicos.", icon: "fa-microscope"}, {name: "IA de Modelado Jurídico", desc: "Investigación avanzada de casos.", icon: "fa-gavel"}]
+        };
+
+        function goToStep(step) {
+            document.querySelectorAll('.step-content').forEach(s => s.classList.remove('active-step'));
+            if(step === 'history') {
+                document.getElementById('step-history').classList.add('active-step');
+                renderHistory();
+            } else {
+                document.getElementById('step' + step).classList.add('active-step');
+            }
+            document.querySelectorAll('nav button').forEach(btn => {
+                btn.classList.remove('text-blue-600', 'border-blue-600', 'border-b-4');
+                if(btn.id === 'btn-'+step) btn.classList.add('text-blue-600', 'border-blue-600', 'border-b-4');
+            });
+            window.scrollTo(0,0);
+        }
+
+        function setLevel(level) {
+            currentLevel = level;
+            const container = document.getElementById('tools-container');
+            container.innerHTML = toolData[level].map(tool => `
+                <button onclick="selectTool('${tool.name}')" class="p-5 border-2 border-slate-100 rounded-2xl hover:border-blue-500 bg-slate-50 transition-all hover:shadow-md text-left w-full">
+                    <span class="font-black text-sm uppercase tracking-tighter text-slate-700 block">
+                        <i class="fas ${tool.icon} mr-3 text-blue-500"></i>${tool.name}
+                    </span>
+                    <span class="text-[10px] text-slate-400 font-bold mt-1 block">${tool.desc}</span>
+                </button>
+            `).join('');
+            document.getElementById('q2-label').innerText = level === 'primaria' ? "¿Se expondrán datos de menores?" : "¿Se subirán datos personales de estudiantes?";
+            goToStep(1);
+        }
+
+        function selectTool(name) { document.getElementById('tool-name').value = name; goToStep(2); }
+
+        function generateEthicalPrompt() {
+            const topic = document.getElementById('subject-topic').value || "[TEMA]";
+            const prompts = {
+                primaria: `Actúa como compañero de curiosidad para niños de 9 años. Sobre "${topic}", nunca des la solución. Haz preguntas breves.`,
+                secundaria: `Actúa como tutor Socrático sobre "${topic}". Identifica sesgos y exige justificación de premisas.`,
+                universidad: `Actúa como asesor crítico en "${topic}". Exige citación de fuentes humanas y detecta alucinaciones.`
+            };
+            document.getElementById('generated-prompt').value = prompts[currentLevel];
+        }
+
+        function generateEvalQuestions() {
+            const evals = {
+                primaria: ["• ¿Cómo le explicarías esto a un amigo?", "• ¿Qué dice tu libro sobre esto?"],
+                secundaria: ["• ¿Qué parte de la IA parece sesgada?", "• Contrasta esto con una fuente opuesta."],
+                universidad: ["• Evalúa la validez epistemológica de la respuesta.", "• Contrasta con bibliografía física."]
+            };
+            document.getElementById('eval-questions-display').innerHTML = evals[currentLevel].map(q => `<div class="p-3 bg-white border-l-4 border-purple-400 rounded shadow-sm text-[11px] font-bold italic text-slate-700">${q}</div>`).join('');
+        }
+
+        function saveToHistory() {
+            const history = JSON.parse(localStorage.getItem('unesco_v3') || '[]');
+            history.unshift({
+                date: new Date().toLocaleDateString(),
+                level: currentLevel,
+                topic: document.getElementById('subject-topic').value || "General",
+                tool: document.getElementById('tool-name').value,
+                prompt: document.getElementById('generated-prompt').value,
+                impact: { engagement: document.getElementById('impact-engagement').value, obs: document.getElementById('impact-obs').value }
+            });
+            localStorage.setItem('unesco_v3', JSON.stringify(history));
+            alert("Plan Guardado");
+        }
+
+        function renderHistory() {
+            const history = JSON.parse(localStorage.getItem('unesco_v3') || '[]');
+            const list = document.getElementById('history-list');
+            if(history.length === 0) { list.innerHTML = "<p class='text-center py-10 font-bold'>Vacío.</p>"; return; }
+            list.innerHTML = history.map(e => `
+                <article class="border-l-8 border-blue-500 bg-white p-6 rounded-r-2xl shadow-lg text-[11px]">
+                    <div class="flex justify-between font-black mb-4 uppercase"><span>${e.date} | ${e.level}</span><span>${e.topic}</span></div>
+                    <blockquote class="bg-slate-50 p-4 border rounded-xl mb-4 italic text-slate-500">"${e.prompt}"</blockquote>
+                    <span class="font-black text-emerald-700 block uppercase">Impacto: ${e.impact.engagement}</span>
+                    <span class="text-slate-600 block mt-1">${e.impact.obs}</span>
+                </article>
+            `).join('');
+        }
+
+        function prepareUNESCOPlan() {
+            const tool = document.getElementById('tool-name').value;
+            let consent = currentLevel !== 'universidad' ? `
+                <div class="section-title" style="color: #d32f2f;">6. Protocolo de Protección de Datos</div>
+                <div class="content-box" style="border: 1px dashed #d32f2f; font-size: 8pt;">
+                    Se certifica consentimiento parental para <strong>${tool}</strong>. No se compartieron datos sensibles.
+                    <br><br>_________________________________________<br>Firma Docente
+                </div>` : "";
+
+            const planHTML = `
+                <div class="plan-page">
+                    <table class="header-table">
+                        <tr><td><h1 style="color:#0077d4; font-size:18pt;">PLAN DE CLASE UNESCO</h1></td><td style="text-align:right;">${currentLevel.toUpperCase()}</td></tr>
+                    </table>
+                    <div class="section-title">1. Contexto</div><div class="content-box">${document.getElementById('subject-topic').value} | ${tool}</div>
+                    <div class="section-title">2. Prompt Ético</div><div class="content-box" style="font-family:monospace;">${document.getElementById('generated-prompt').value}</div>
+                    <div class="section-title">3. Evaluación Humana</div><div class="content-box">${document.getElementById('eval-questions-display').innerHTML}</div>
+                    ${consent}
+                </div>`;
+            document.getElementById('unesco-plan-template').innerHTML = planHTML;
+            window.print();
+        }
+
+        function exportToCSV() {
+            const history = JSON.parse(localStorage.getItem('unesco_v3') || '[]');
+            let csv = "data:text/csv;charset=utf-8,\uFEFFFecha,Nivel,Tema,Herramienta,Impacto\n";
+            history.forEach(e => csv += `${e.date},${e.level},"${e.topic}","${e.tool}","${e.impact.engagement}"\n`);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodeURI(csv));
+            link.setAttribute("download", "bitacora_ia_unesco.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function clearHistory() { if(confirm("¿Borrar historial?")) { localStorage.removeItem('unesco_v3'); renderHistory(); } }
+        function copyPrompt() { document.getElementById('generated-prompt').select(); document.execCommand('copy'); alert("Copiado"); }
+    </script>
+</body>
+</html>
+
