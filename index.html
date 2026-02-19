@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <!-- 
-  AI-Pedagogy Co-Pilot v1.1 (W3C Validated)
+  AI-Pedagogy Co-Pilot v1.2 (W3C Validated & Accessible)
   License: MIT (./LICENSE)
   Copyright (c) 2026 Marcelo Andrés Reynoso [marcelo-ar-ar]
   Alineado con el Marco de Competencias Docentes en IA de la UNESCO.
@@ -44,7 +44,7 @@
         <span class="text-[10px] opacity-90 uppercase tracking-[0.3em] mt-1 font-bold block">Marco de Competencias Docentes UNESCO</span>
     </header>
 
-    <nav class="max-w-5xl mx-auto mt-8 px-4 no-print">
+    <nav class="max-w-5xl mx-auto mt-8 px-4 no-print" aria-label="Navegación por pasos">
         <div class="flex justify-between text-[10px] md:text-xs font-black uppercase text-slate-400 border-b-2 border-slate-200">
             <button id="btn-0" class="pb-3 border-b-4 border-blue-600 text-blue-600 font-black uppercase" onclick="goToStep(0)">1. Contexto</button>
             <button id="btn-1" class="pb-3 font-black uppercase" onclick="goToStep(1)">2. Herramienta</button>
@@ -59,23 +59,24 @@
 
         <!-- PASO 0: NIVEL -->
         <section id="step0" class="step-content active-step bg-white p-10 rounded-3xl shadow-xl border border-slate-200">
+            <h2 class="sr-only">Selección de Nivel Educativo</h2>
             <div class="text-center mb-10">
                 <span class="text-3xl font-black text-slate-800 mb-2 italic block">Bienvenido, Docente Innovador</span>
                 <span class="text-slate-500 block">Selecciona tu nivel educativo para personalizar la experiencia:</span>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <button onclick="setLevel('primaria')" class="p-8 border-2 border-slate-100 rounded-2xl hover:border-orange-400 hover:bg-orange-50 transition-all group shadow-sm text-center">
-                    <i class="fas fa-child text-4xl mb-4 text-orange-400 group-hover:scale-110 transition-transform"></i>
+                    <i class="fas fa-child text-4xl mb-4 text-orange-400 group-hover:scale-110 transition-transform" aria-hidden="true"></i>
                     <span class="font-black text-lg block text-slate-700 uppercase tracking-tighter">Primaria</span>
                     <span class="text-[11px] text-slate-400 mt-2 leading-tight block font-bold">Alfabetización y seguridad inicial.</span>
                 </button>
                 <button onclick="setLevel('secundaria')" class="p-8 border-2 border-slate-100 rounded-2xl hover:border-blue-500 hover:bg-blue-50 transition-all group shadow-sm text-center">
-                    <i class="fas fa-user-graduate text-4xl mb-4 text-blue-500 group-hover:scale-110 transition-transform"></i>
+                    <i class="fas fa-user-graduate text-4xl mb-4 text-blue-500 group-hover:scale-110 transition-transform" aria-hidden="true"></i>
                     <span class="font-black text-lg block text-slate-700 uppercase tracking-tighter">Secundaria</span>
                     <span class="text-[11px] text-slate-400 mt-2 leading-tight block font-bold">Pensamiento crítico y sesgos.</span>
                 </button>
                 <button onclick="setLevel('universidad')" class="p-8 border-2 border-slate-100 rounded-2xl hover:border-purple-600 hover:bg-purple-50 transition-all group shadow-sm text-center">
-                    <i class="fas fa-university text-4xl mb-4 text-purple-600 group-hover:scale-110 transition-transform"></i>
+                    <i class="fas fa-university text-4xl mb-4 text-purple-600 group-hover:scale-110 transition-transform" aria-hidden="true"></i>
                     <span class="font-black text-lg block text-slate-700 uppercase tracking-tighter">Universidad</span>
                     <span class="text-[11px] text-slate-400 mt-2 leading-tight block font-bold">Investigación y ética técnica.</span>
                 </button>
@@ -84,20 +85,22 @@
 
         <!-- PASO 1: HERRAMIENTAS -->
         <section id="step1" class="step-content bg-white p-10 rounded-3xl shadow-xl border border-slate-200">
-            <span class="text-2xl font-black mb-6 text-blue-800 block"><i class="fas fa-tools mr-3"></i>¿Qué sistema de IA integraremos?</span>
+            <h2 class="sr-only">Configuración de Herramientas de IA</h2>
+            <span class="text-2xl font-black mb-6 text-blue-800 block"><i class="fas fa-tools mr-3" aria-hidden="true"></i>¿Qué sistema de IA integraremos?</span>
             <div id="tools-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
             <div class="mt-8 bg-slate-50 p-6 rounded-2xl border border-slate-200">
                 <label for="tool-name" class="block text-xs font-black text-slate-500 uppercase mb-2">Especificar uso pedagógico:</label>
                 <input id="tool-name" type="text" class="w-full p-4 bg-white rounded-xl border-2 border-slate-100 focus:border-blue-500 outline-none transition-all text-sm font-bold" placeholder="Ej: ChatGPT para guiar borradores de ensayo socráticos">
             </div>
             <div class="mt-10 flex justify-end">
-                <button onclick="goToStep(2)" class="bg-blue-600 text-white px-10 py-4 rounded-2xl font-black shadow-lg hover:bg-blue-700 transition-all">SIGUIENTE PASO <i class="fas fa-chevron-right ml-2"></i></button>
+                <button onclick="goToStep(2)" class="bg-blue-600 text-white px-10 py-4 rounded-2xl font-black shadow-lg hover:bg-blue-700 transition-all">SIGUIENTE PASO <i class="fas fa-chevron-right ml-2" aria-hidden="true"></i></button>
             </div>
         </section>
 
         <!-- PASO 2: RIESGOS -->
         <section id="step2" class="step-content bg-white p-10 rounded-3xl shadow-xl border border-slate-200">
-            <span class="text-2xl font-black mb-8 text-red-600 text-center block"><i class="fas fa-shield-alt mr-3"></i>Semáforo de Riesgo Ético</span>
+            <h2 class="sr-only">Evaluación de Riesgos Éticos</h2>
+            <span class="text-2xl font-black mb-8 text-red-600 text-center block"><i class="fas fa-shield-alt mr-3" aria-hidden="true"></i>Semáforo de Riesgo Ético</span>
             <div class="space-y-4 max-w-xl mx-auto">
                 <div class="flex items-center gap-5 p-5 border-2 rounded-2xl bg-red-50 border-red-100 transition-all hover:bg-red-100">
                     <input type="checkbox" id="q1" class="w-6 h-6 accent-red-600">
@@ -120,6 +123,7 @@
 
         <!-- PASO 3: DISEÑO -->
         <section id="step3" class="step-content bg-white p-10 rounded-3xl shadow-xl border border-slate-200">
+            <h2 class="sr-only">Diseño de Prompt y Evaluación Humana</h2>
             <span class="text-2xl font-black mb-2 text-blue-800 block">4. Diseño del Prompt y Evaluación</span>
             <span class="text-[10px] text-slate-400 mb-8 italic uppercase tracking-widest font-black block">Transferencia del Diseño Instruccional al Pedagógico</span>
             
@@ -129,8 +133,8 @@
                     <input id="subject-topic" type="text" class="flex-1 p-4 rounded-xl border-2 border-blue-200 text-sm font-bold shadow-sm" placeholder="Ingresa el tema (ej: Cambio Climático)">
                     <button onclick="generateEthicalPrompt()" class="bg-blue-600 text-white px-6 py-4 rounded-xl font-black text-xs hover:bg-blue-800 transition-all shadow-md">GENERAR PROMPT</button>
                 </div>
-                <textarea id="generated-prompt" class="w-full p-5 bg-white border-2 border-blue-200 rounded-xl text-xs font-mono h-32 mb-3 shadow-inner" aria-label="Prompt Generado"></textarea>
-                <button onclick="copyPrompt()" class="text-xs text-blue-700 font-black flex items-center hover:text-blue-900 transition-all"><i class="fas fa-copy mr-2"></i> COPIAR PROMPT ÉTICO</button>
+                <textarea id="generated-prompt" class="w-full p-5 bg-white border-2 border-blue-200 rounded-xl text-xs font-mono h-32 mb-3 shadow-inner" aria-label="Contenido del Prompt Generado"></textarea>
+                <button onclick="copyPrompt()" class="text-xs text-blue-700 font-black flex items-center hover:text-blue-900 transition-all"><i class="fas fa-copy mr-2" aria-hidden="true"></i> COPIAR PROMPT ÉTICO</button>
             </div>
 
             <div class="bg-purple-50 p-8 rounded-3xl border-2 border-purple-100 shadow-inner">
@@ -147,6 +151,7 @@
 
         <!-- PASO 4: IMPACTO -->
         <section id="step4" class="step-content bg-white p-10 rounded-3xl shadow-xl border border-slate-200">
+            <h2 class="sr-only">Análisis de Impacto y Rúbrica Final</h2>
             <span class="text-2xl font-black mb-2 text-emerald-800 text-center uppercase tracking-tighter italic block">Registro de Impacto Pedagógico</span>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
@@ -167,7 +172,7 @@
                 </div>
 
                 <div class="bg-slate-50 p-6 rounded-2xl border-2 border-dashed border-slate-300">
-                    <span class="text-xs font-black text-slate-800 mb-4 flex items-center italic uppercase block"><i class="fas fa-award mr-2 text-yellow-500"></i> Rúbrica UNESCO v2024</span>
+                    <span class="text-xs font-black text-slate-800 mb-4 flex items-center italic uppercase block" aria-hidden="true"><i class="fas fa-award mr-2 text-yellow-500"></i> Rúbrica UNESCO v2024</span>
                     <div class="space-y-4">
                         <span class="text-[9px] border-b pb-2 block"><span class="font-bold text-blue-700 uppercase">Innovador:</span> El alumno valida y cuestiona a la IA.</span>
                         <span class="text-[9px] border-b pb-2 block"><span class="font-bold text-emerald-600 uppercase">Ética:</span> El docente garantiza anonimato de datos.</span>
@@ -178,13 +183,14 @@
 
             <div class="mt-16 pt-10 border-t-2 border-slate-100 text-center">
                 <button onclick="prepareUNESCOPlan()" class="bg-slate-900 text-white px-12 py-5 rounded-[2rem] font-black shadow-2xl hover:bg-black transition-all hover:scale-105 border-4 border-slate-800 uppercase">
-                    <i class="fas fa-file-pdf mr-3"></i> Generar Plan UNESCO
+                    <i class="fas fa-file-pdf mr-3" aria-hidden="true"></i> Generar Plan UNESCO
                 </button>
             </div>
         </section>
 
         <!-- BITÁCORA -->
         <section id="step-history" class="step-content bg-white p-10 rounded-3xl shadow-xl border border-slate-200">
+            <h2 class="sr-only">Historial de Planeaciones y Bitácora Escolar</h2>
             <div class="flex justify-between items-center mb-10">
                 <span class="text-2xl font-black text-blue-800 tracking-tighter italic uppercase block">Bitácora de Innovación</span>
                 <div class="flex gap-4">
@@ -234,7 +240,7 @@
             container.innerHTML = toolData[level].map(tool => `
                 <button onclick="selectTool('${tool.name}')" class="p-5 border-2 border-slate-100 rounded-2xl hover:border-blue-500 bg-slate-50 transition-all hover:shadow-md text-left w-full">
                     <span class="font-black text-sm uppercase tracking-tighter text-slate-700 block">
-                        <i class="fas ${tool.icon} mr-3 text-blue-500"></i>${tool.name}
+                        <i class="fas ${tool.icon} mr-3 text-blue-500" aria-hidden="true"></i>${tool.name}
                     </span>
                     <span class="text-[10px] text-slate-400 font-bold mt-1 block">${tool.desc}</span>
                 </button>
@@ -265,7 +271,7 @@
         }
 
         function saveToHistory() {
-            const history = JSON.parse(localStorage.getItem('unesco_v3') || '[]');
+            const history = JSON.parse(localStorage.getItem('unesco_v4') || '[]');
             history.unshift({
                 date: new Date().toLocaleDateString(),
                 level: currentLevel,
@@ -274,20 +280,20 @@
                 prompt: document.getElementById('generated-prompt').value,
                 impact: { engagement: document.getElementById('impact-engagement').value, obs: document.getElementById('impact-obs').value }
             });
-            localStorage.setItem('unesco_v3', JSON.stringify(history));
+            localStorage.setItem('unesco_v4', JSON.stringify(history));
             alert("Plan Guardado");
         }
 
         function renderHistory() {
-            const history = JSON.parse(localStorage.getItem('unesco_v3') || '[]');
+            const history = JSON.parse(localStorage.getItem('unesco_v4') || '[]');
             const list = document.getElementById('history-list');
-            if(history.length === 0) { list.innerHTML = "<p class='text-center py-10 font-bold'>Vacío.</p>"; return; }
+            if(history.length === 0) { list.innerHTML = "<p class='text-center py-10 font-bold'>Bitácora vacía.</p>"; return; }
             list.innerHTML = history.map(e => `
-                <article class="border-l-8 border-blue-500 bg-white p-6 rounded-r-2xl shadow-lg text-[11px]">
+                <article class="border-l-8 border-blue-500 bg-white p-6 rounded-r-2xl shadow-lg text-[11px]" role="region" aria-label="Entrada de historial">
                     <div class="flex justify-between font-black mb-4 uppercase"><span>${e.date} | ${e.level}</span><span>${e.topic}</span></div>
                     <blockquote class="bg-slate-50 p-4 border rounded-xl mb-4 italic text-slate-500">"${e.prompt}"</blockquote>
                     <span class="font-black text-emerald-700 block uppercase">Impacto: ${e.impact.engagement}</span>
-                    <span class="text-slate-600 block mt-1">${e.impact.obs}</span>
+                    <span class="text-slate-600 block mt-1 italic">${e.impact.obs}</span>
                 </article>
             `).join('');
         }
@@ -304,11 +310,11 @@
             const planHTML = `
                 <div class="plan-page">
                     <table class="header-table">
-                        <tr><td><h1 style="color:#0077d4; font-size:18pt;">PLAN DE CLASE UNESCO</h1></td><td style="text-align:right;">${currentLevel.toUpperCase()}</td></tr>
+                        <tr><td><h1 style="color:#0077d4; font-size:18pt; margin:0;">PLAN DE CLASE UNESCO</h1></td><td style="text-align:right;">${currentLevel.toUpperCase()}</td></tr>
                     </table>
-                    <div class="section-title">1. Contexto</div><div class="content-box">${document.getElementById('subject-topic').value} | ${tool}</div>
-                    <div class="section-title">2. Prompt Ético</div><div class="content-box" style="font-family:monospace;">${document.getElementById('generated-prompt').value}</div>
-                    <div class="section-title">3. Evaluación Humana</div><div class="content-box">${document.getElementById('eval-questions-display').innerHTML}</div>
+                    <div class="section-title">1. Contexto Académico</div><div class="content-box">${document.getElementById('subject-topic').value} | ${tool}</div>
+                    <div class="section-title">2. Prompt de Instrucción Ética</div><div class="content-box" style="font-family:monospace;">${document.getElementById('generated-prompt').value}</div>
+                    <div class="section-title">3. Verificación de Aprendizaje (Control Humano)</div><div class="content-box">${document.getElementById('eval-questions-display').innerHTML}</div>
                     ${consent}
                 </div>`;
             document.getElementById('unesco-plan-template').innerHTML = planHTML;
@@ -316,7 +322,7 @@
         }
 
         function exportToCSV() {
-            const history = JSON.parse(localStorage.getItem('unesco_v3') || '[]');
+            const history = JSON.parse(localStorage.getItem('unesco_v4') || '[]');
             let csv = "data:text/csv;charset=utf-8,\uFEFFFecha,Nivel,Tema,Herramienta,Impacto\n";
             history.forEach(e => csv += `${e.date},${e.level},"${e.topic}","${e.tool}","${e.impact.engagement}"\n`);
             const link = document.createElement("a");
@@ -327,9 +333,8 @@
             document.body.removeChild(link);
         }
 
-        function clearHistory() { if(confirm("¿Borrar historial?")) { localStorage.removeItem('unesco_v3'); renderHistory(); } }
-        function copyPrompt() { document.getElementById('generated-prompt').select(); document.execCommand('copy'); alert("Copiado"); }
+        function clearHistory() { if(confirm("¿Borrar historial?")) { localStorage.removeItem('unesco_v4'); renderHistory(); } }
+        function copyPrompt() { document.getElementById('generated-prompt').select(); document.execCommand('copy'); alert("Prompt Copiado"); }
     </script>
 </body>
 </html>
-
