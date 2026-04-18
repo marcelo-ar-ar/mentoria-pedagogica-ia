@@ -1,10 +1,10 @@
-# 📘 AI-Pedagogy Co-Pilot: Marco UNESCO v1.0
+# 📘 Mentoría Pedagógica: Marco UNESCO v1.0
 
 ![Licencia](https://img.shields.io)
 ![Enfoque](https://img.shields.io)
 ![Estado](https://img.shields.io)
 
-**AI-Pedagogy Co-Pilot** es una aplicación web diseñada para empoderar a los docentes en la integración ética y competente de la Inteligencia Artificial. Esta herramienta transforma las directrices complejas del **Marco de Competencias Docentes en IA de la UNESCO** en un flujo de trabajo práctico y cotidiano.
+**Mentoría Medagógica IA** es una aplicación web diseñada para empoderar a los docentes en la integración ética y competente de la Inteligencia Artificial. Esta herramienta transforma las directrices complejas del **Marco de Competencias Docentes en IA de la UNESCO** en un flujo de trabajo práctico y cotidiano.
 
 ## 🎯 Propósito Pedagógico
 Ayudar a los docentes a transitar del uso instrumental de la IA hacia un **diseño pedagógico intencional** que fomente:
@@ -27,7 +27,7 @@ Esta es una **aplicación sin servidor (Serverless)**. No requiere instalación 
 2.  Abre `index.html` en cualquier navegador moderno.
 3.  Para desplegarlo globalmente, activa **GitHub Pages** en la configuración de tu repositorio.
 
-## 🎥 Guía Tutorial: AI-Pedagogy Co-Pilot (Paso a Paso)
+## 🎥 Guía Tutorial: Mentoría Pedagógica IA (Paso a Paso)
 
 Esta herramienta no es solo un generador; es un entrenador de pensamiento crítico. Sigue estos 5 pasos para transformar tu clase:
 
